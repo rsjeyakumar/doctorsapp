@@ -42,6 +42,8 @@ export class SearchComponent implements OnInit {
    */
   searchDoctors() {
     if (this.searchForm.valid) {
+      const element = document.querySelector('#post-container');
+      element.scrollIntoView({ behavior: 'smooth', block: 'end'});
       const specilization = this.searchForm.value.specialization;
       // tslint:disable-next-line: deprecation
       this.foodService.searchDoctor(specilization).subscribe(res => {
