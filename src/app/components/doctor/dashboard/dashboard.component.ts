@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FoodCartService } from '../../../services/food-cart.service';
 import { PatentDetailsRes, PatentDetails, GetSlots, SlotList, Response } from 'src/app/models/models';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -32,6 +32,14 @@ export class DashboardComponent implements OnInit {
     this.http.postSlots(this.doctorId, selectedSlots).subscribe(
       (res: Response) => {
         this.display = false;
+        Swal.fire({
+          text: 'Slot booked successfully',
+          // tslint:disable-next-line: max-line-length
+          imageUrl: 'https://banner2.cleanpng.com/20180601/ush/kisspng-stranahan-theater-booked-cinema-maumee-indoor-thea-fully-booked-5b119c0285c691.372962371527880706548.jpg',
+          imageWidth: 400,
+          imageHeight: 200,
+          imageAlt: 'Custom image',
+        });
       }
     );
 
