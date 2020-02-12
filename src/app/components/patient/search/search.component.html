@@ -56,9 +56,10 @@
                             class="img-fluid" />
                         <h3>Rabeek</h3>
                         <h3><strong class="text-primary">Heart Speciliast</strong></h3>
+                        <p-rating [ngModel]="4" readonly="true" stars="5" [cancel]="false"></p-rating>
                     </div>
                     <div class="team-back text-center" style="margin-top:30px;">
-                        <div class="footer text-center" style="padding-top:45px;">
+                        <div class="footer text-center" style="padding-top:80px;">
                             <button (click)="bookAppointment();" class="btn btn-danger">Book Appointment</button>
                         </div>
                     </div>
@@ -69,7 +70,47 @@
         </div>
     </div>
 </section>
-
+<p-dialog header="Book Appointment" [(visible)]="appointment" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false">
+    <form [formGroup]="appointmentForm" (ngSubmit)="submitAppointment();">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Name</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" formControlName="name" aria-describedby="emailHelp" placeholder="Enter Name">
+          <div *ngIf="booking.name.touched && booking.name.invalid" class="error_appointment">
+            <div *ngIf="booking.name.errors && booking.name.errors.required">
+             Patient name is <strong>required</strong>
+            </div>
+        </div>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Contact Number</label>
+          <input type="text" class="form-control" id="exampleInputPassword1"  formControlName="mobile" placeholder="Enter Mobile Number">
+          <div *ngIf="booking.mobile.touched && booking.mobile.invalid" class="error_appointment">
+            <div *ngIf="booking.mobile.errors && booking.mobile.errors.required">
+             Mobile number is <strong>required</strong>
+            </div>
+        </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Appointment Slots</label>
+              <select id="inputState" class="form-control" formControlName="slot">
+                <option selected>Choose Slots</option>
+                <option>1</option>
+              </select>
+              <div *ngIf="booking.slot.touched && booking.slot.invalid" class="error_appointment">
+                <div *ngIf="booking.slot.errors && booking.slot.errors.required">
+                Booking slot is <strong>required</strong>
+                </div>
+            </div>
+            </div>
+            <div class="form-group col-md-6">
+                <button type="button" class="btn btn-primary" style="margin-top:28px;">Get Slots</button>
+            </div>
+          </div>
+          <button type="submit" [disabled]="appointmentForm.invalid" class="btn btn-danger btn-sm btn-block">Book Appointment</button>
+      </form>
+</p-dialog>
 <app-loader [loader]="loader"></app-loader>
 <app-alert [sharedAlert]="foodService.showAlert" *ngIf="foodService.showAlert?.modalShow"></app-alert>
 
