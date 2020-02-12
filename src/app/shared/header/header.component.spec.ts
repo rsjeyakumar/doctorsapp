@@ -39,9 +39,6 @@ describe('HeaderComponent', () => {
   });
 
 
-  it('should navigate to summary page', () => {
-    component.summary();
-    expect(mockRouter.navigate).toHaveBeenCalledWith(['/summary']);
-  });
+ 
 
 });

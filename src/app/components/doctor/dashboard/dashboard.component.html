@@ -51,6 +51,16 @@
             <p class="m-2 p-2 border slot" (click)="slot.availablity = !slot.availablity;" [ngClass]="{'border-success bg-success' :slot.availablity }">{{slot.slotName}}</p>
         </div>
     </div>
+    <div class="row">
+        <div class="col-12">
+           <p><span class="border border-primary"></span></p> 
+           <br>
+            <p><span class="border border-secondary"></span></p>
+            <br>
+           <p> <span class="border border-success"></span></p>
+           <br>
+        </div>
+    </div>
 
         <p-footer>
             <button class="btn btn-primary" (click)="makeAvailable()">Make me Avaliable</button>         
