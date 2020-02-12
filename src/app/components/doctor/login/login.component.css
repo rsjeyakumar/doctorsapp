@@ -46,3 +46,7 @@
     color:yellow;
     padding: 3px;
   }
+
+  .form-group label{
+      color:#fff;
+  }
