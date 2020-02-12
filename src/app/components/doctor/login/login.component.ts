@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FoodCartService } from '../../../services/food-cart.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -6,10 +9,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  constructor() { }
+  loginForm: FormGroup;
+  constructor(private http: FoodCartService, private router: Router) { }
 
   ngOnInit() {
+    this.loginForm = new FormGroup({
+      mobileNumber: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required])
+    });
+  }
+
+  validateUser() {
+    console.log(this.loginForm.value);
+    this.http.checkLogin(this.loginForm.value).subscribe(
+      (res) => {
+        if (res.statusCode === 200) {
+          sessionStorage.setItem('currentUser', JSON.stringify(res));
+          this.router.navigate(['/doctor/dashboard']);
+        }
+      }
+    );
   }
 
 }

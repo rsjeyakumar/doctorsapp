@@ -1,20 +1,39 @@
 export interface LoginReq {
-        userId: string;
+        mobileNumber: string;
         password: string;
 }
 
 export interface LoginRes {
         statusCode: number;
-        userName: string;
-        userId: number;
+        doctorId: number;
+        doctorName: string;
 }
 
 
-export interface AccountReq {
+export interface GetSlots {
         statusCode: number;
         message: string;
-        acccountDetail: AccountsList[];
+        slotDetails: SlotList[];
 }
+export interface SlotList {
+        slotId: number;
+        slotName: string;
+}
+
+export interface PostSlotsReq {
+        slotSelected: SlotSelected[];
+}
+
+export interface SlotSelected {
+        slotName: string;
+}
+
+
+export interface Response {
+        statusCode: number;
+        message: string;
+}
+
 
 export interface AccountsList {
         accountNumber: number;

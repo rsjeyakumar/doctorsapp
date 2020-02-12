@@ -29,8 +29,8 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  summary() {
-    this.router.navigate(['/summary']);
+  login() {
+    this.router.navigate(['/doctor']);
   }
 
   /* logout */

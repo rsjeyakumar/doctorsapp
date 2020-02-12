@@ -7,11 +7,10 @@ import { retry, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class FoodCartService {
-  apiURL = 'http://10.117.189.227:8585';
+  apiURL = 'http://10.117.189.136:8585';
   showAlert;
-  loginAPI = `${this.apiURL}/forex/login`;
-  transferAPI = `${this.apiURL}/forex/users`;
-  currencyAPI = `${this.apiURL}/forex/rates`;
+  loginAPI = `${this.apiURL}/DigiHealth/login`;
+
 
 
   constructor(private http: HttpClient) {
@@ -37,51 +36,6 @@ export class FoodCartService {
     );
   }
 
-  /*
-  * @param data
-  * Validate Login API
-  * POST Method
-  * Type Object
-  */
-  transferAmount(data, userId): Observable<any> {
-    return this.http.post(this.transferAPI + '/' + userId + '/transactions', data, this.httpOptions).pipe(
-      catchError(this.errorHandler.bind(this))
-    );
-  }
-
-
-  /*
-   * @param data
-   * Validate Login API
-   * POST Method
-   * Type Object
-   */
-  getSummary(data): Observable<any> {
-    return this.http.get(this.transferAPI + '/' + data + '/transactions', this.httpOptions).pipe(
-      catchError(this.errorHandler.bind(this))
-    );
-  }
-
-
-
-  /*
-  * @param data
-  * Validate Login API
-  * POST Method
-  * Type Object
-  */
-  getAllAccounts(custId): Observable<any> {
-    return this.http.get(this.transferAPI + '/' + custId + '/accounts', this.httpOptions).pipe(
-      catchError(this.errorHandler.bind(this))
-    );
-  }
-
-
-  getCurrency(data): Observable<any> {
-    return this.http.post(this.currencyAPI, data, this.httpOptions).pipe(
-      catchError(this.errorHandler.bind(this))
-    );
-  }
   /*
      * @param error
      * Error Handling
