@@ -2,12 +2,20 @@
   <h5 class="my-0 mr-md-auto font-weight-normal"> <a class="navbar-brand" href="#"> <span class="sky">Digi</span> <span class="text-success">Health Care</span></a></h5>
   <nav class="my-2 my-md-0 mr-md-3">
     <a  *ngIf="!userDetails && userDetails?.doctorName" class="p-2 text-primary" href="javascript:void(0)" (click)="login();">Doctor Login</a>
-    <ul class="nav navbar-nav ml-md--auto float-right">
-      <li class="dropdown" *ngIf="userDetails && userDetails?.doctorName">
-        <a href="#" class="nav-link" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+    
+    <ul class="nav nav-tabs">
+      
+      <li class="nav-item dropdown">
+        <a href="javascript:void(0)" (click)="show = !show" class="nav-link" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
           <strong class="text-success">Welcome <span class="text-info">{{userDetails?.doctorName}}</span></strong>          
-        </a>       
+        </a>
+        <div class="dropdown-menu" [ngClass]="{'show':show}">
+          <a href="javascript:void(0);" (click)="logout();" class="nav-link" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+            LogOut
+           </a>
+        </div>
       </li>
-    </ul>    
+     
+    </ul>   
   </nav> 
 </div>

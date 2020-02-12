@@ -15,9 +15,9 @@ export interface GetSlots {
         message: string;
         slotDetails: SlotList[];
 }
-export interface SlotList {
-        slotId: number;
+export interface SlotList {        
         slotName: string;
+        availablity: boolean;
 }
 
 export interface PostSlotsReq {
@@ -27,7 +27,6 @@ export interface PostSlotsReq {
 export interface SlotSelected {
         slotName: string;
 }
-
 
 export interface Response {
         statusCode: number;
@@ -52,4 +51,14 @@ export interface AppoinmentReq {
         doctorId: number;
         slotName: number;
         hospitalName: string;
+}
+export interface PatentDetailsRes {
+        statusCode: number;
+        patientDetails: PatentDetails[];
+}
+
+export interface PatentDetails {
+        patientName: string;
+        patientContact: string;
+        slotName: string;
 }

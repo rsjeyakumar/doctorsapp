@@ -11,6 +11,7 @@ import { MessageSubscriptionService } from '../../services/message-subscription.
 export class HeaderComponent implements OnInit {
   subscription: Subscription;
   userDetails: any;
+  show = false;
   constructor(
     private router: Router,
     private messageService: MessageSubscriptionService) { }

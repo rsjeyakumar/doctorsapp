@@ -6,7 +6,7 @@
     </div>
     <div class="row py-2">
         <div class="col-12 text-left py-2">
-            <h5>List of Patients for consultation for today</h5>
+            <h5>List of Patients to consult for today</h5>
         </div>
     </div>
 </div>
@@ -14,24 +14,24 @@
     
     <div id="products" class="row view-group pt-4">
        
-        <div class="item col-xs-4 col-lg-4 list-group-item">
+        <div class="item col-xs-4 col-lg-4 list-group-item" *ngFor="let patient of patientDeatils">
             <div class="thumbnail card p-1">
                 <div class="img-event">
-                    <img class="group list-group-image img-fluid" src="https://ui-avatars.com/api/?name=John+Doe&color=28a745" alt="" />
+                    <img class="group list-group-image img-fluid" src="https://ui-avatars.com/api/?name={{patient.patientName}}=28a745" alt="" />
                 </div>
                 <div class="caption card-body p-2">
                     <div class="row patientinfo">
                         <div class="col-4">
                             <h6 class="group card-title inner list-group-item-heading">
-                                Raja Sundharam</h6>
+                                {{patient.patientName}}</h6>
                         </div>
                         <div class="col-4">
                             <p class="group inner list-group-item-text">
-                                9876543210 </p>
+                                {{patient.patientContact}} </p>
                         </div>
                         <div class="col-4">
                             <p class="group inner list-group-item-text">
-                                11:00AM</p>
+                                {{patient.slotName}}</p>
                         </div>
                     </div>
                 </div>

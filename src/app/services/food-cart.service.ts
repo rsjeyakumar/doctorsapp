@@ -49,28 +49,54 @@ export class FoodCartService {
   );
 }
 
-/*
-  * @param data
-  * Patient Appointment API
-  * POST Method
-  * Type Object
-  */
- bookAppointment(data): Observable<any> {
-  return this.http.post(this.appointmentAPI, data, this.httpOptions).pipe(
-    catchError(this.errorHandler.bind(this))
-  );
-}
+  /*
+    * @param data
+    * Patient Appointment API
+    * POST Method
+    * Type Object
+    */
+  bookAppointment(data): Observable<any> {
+    return this.http.post(this.appointmentAPI, data, this.httpOptions).pipe(
+      catchError(this.errorHandler.bind(this))
+    );
+  }
 
-/*
-  * @param data
-  * Ger Slot for Patients
-  * Get Method
-  */
- getSlots(doctorId: number): Observable<any> {
-  return this.http.get(this.slotAPI + '/' + doctorId + '/' + 'slots').pipe(
-    catchError(this.errorHandler.bind(this))
-  );
-}
+  /*
+    * @param data
+    * Ger Slot for Patients
+    * Get Method
+    */
+  getSlots(doctorId: number): Observable<any> {
+    return this.http.get(this.slotAPI + '/' + doctorId + '/' + 'slots').pipe(
+      catchError(this.errorHandler.bind(this))
+    );
+  }
+
+
+
+  /*
+    * @param data
+    * Ger Slot for Patients
+    * Get Method
+    */
+  postSlots(doctorId: number, data): Observable<any> {
+    return this.http.post(this.slotAPI + '/' + doctorId + '/' + 'slots', data).pipe(
+      catchError(this.errorHandler.bind(this))
+    );
+  }
+
+
+  /*
+    * @param data
+    * Ger Slot for Patients
+    * Get Method
+    */
+  getPatients(doctorId: number): Observable<any> {
+    return this.http.get(this.slotAPI + '/' + doctorId + '/' + 'patients').pipe(
+      catchError(this.errorHandler.bind(this))
+    );
+  }
+
 
 
 
