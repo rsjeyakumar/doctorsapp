@@ -49,7 +49,7 @@ export class SearchComponent implements OnInit {
       // tslint:disable-next-line: deprecation
       this.foodService.searchDoctor(specilization).subscribe(res => {
         console.log(res);
-        if (res.doctorDetails !== '') {
+        if (res.doctorDetails.length !== 0) {
           this.doctorsList = res.doctorDetails;
         } else {
           Swal.fire({
@@ -128,6 +128,7 @@ export class SearchComponent implements OnInit {
     this.appointment = true;
     this.doctorId = doctorId;
     this.hospitalName = hospitalName;
+    this.appointmentForm.reset();
   }
   /*
     * @param create form

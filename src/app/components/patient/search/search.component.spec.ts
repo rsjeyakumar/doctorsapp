@@ -129,8 +129,17 @@ describe('SearchComponent', () => {
 
   it('should search doctors', () => {
     component.searchDoctors();
+    const specilization = component.searchForm.value.specialization;
     expect(api.searchDoctor('physician')).toBeTruthy();
     expect(component.loader).toBeFalsy();
+  });
+
+  it('should enable book appointment', () => {
+    component.bookAppointment(1, 'test');
+    component.appointment = true;
+    component.doctorId = 1;
+    component.hospitalName = 'test';
+    component.appointmentForm.reset();
   });
 
 });
