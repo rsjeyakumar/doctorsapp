@@ -71,6 +71,14 @@ export class SearchComponent implements OnInit {
       this.foodService.bookAppointment(postObj).subscribe(res => {
         console.log(res);
         this.loader = false;
+        Swal.fire({
+          text: 'Appointment has been booked successfully',
+          // tslint:disable-next-line: max-line-length
+          imageUrl: 'https://banner2.cleanpng.com/20180601/ush/kisspng-stranahan-theater-booked-cinema-maumee-indoor-thea-fully-booked-5b119c0285c691.372962371527880706548.jpg',
+          imageWidth: 400,
+          imageHeight: 200,
+          imageAlt: 'Custom image',
+        });
         },
        error => {
         this.loader = false;
