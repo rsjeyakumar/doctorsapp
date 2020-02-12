@@ -11,7 +11,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { FoodCartService } from '../../../services/food-cart.service';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
-fdescribe('DashboardComponent', () => {
+describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
 
