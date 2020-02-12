@@ -14,14 +14,67 @@ import { of } from 'rxjs';
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
-
+  let api: FoodCartService;
+  let mockRouter = {
+    navigate: jasmine.createSpy('navigate')
+  };
+  const mockUserService = {
+    modalConfig: () => ({
+      message: '',
+      modalShow: ''
+    }),
+    getPatients() {
+      return of({
+        statusCode: 200,
+        message: 'List of Details',
+        doctorDetails:
+        [{
+          doctorId: 1,
+          doctorName: 'Rabeek',
+          specialization: 'physician',
+          qualification: 'MBBS',
+          mobileNumber: '987654321',
+          hospitalName: 'BGS'
+        }]
+      });
+    },
+    bookAppointment(data: object) {
+      return of({
+        statusCode: 200,
+        message: 'success'
+      });
+    },
+    getSlots(doctorId: number) {
+      return of({
+        statusCode: 200,
+        message: 'Slots retrieved successfully',
+        slotDetails:
+        [{
+          slotName: 'Rabeek',
+          status: 'Available'
+        }]
+      });
+    }
+  };
+  // create new instance of FormBuilder
+  const formBuilder: FormBuilder = new FormBuilder();
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [DashboardComponent],
       imports: [SharedModule, PrimengModule, BrowserAnimationsModule, HttpClientTestingModule, RouterTestingModule],
-      providers: []
+      providers: [
+        {
+          provide: FoodCartService, useValue: mockUserService
+        },
+        { provide: FormBuilder, useValue: formBuilder },
+        {
+          provide: Router, useValue: mockRouter
+        }
+      ]
     })
-      .compileComponents();
+    .compileComponents();
+    api = TestBed.get(FoodCartService);
+    mockRouter = TestBed.get(Router);
   }));
 
   beforeEach(() => {

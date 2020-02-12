@@ -53,7 +53,7 @@
     [draggable]="false" [resizable]="false">
     <div class="row">
         <div class="col-4 text-center slotlist" *ngFor="let slot of slots" [ngClass]="slot.status">
-            <p class="m-2 p-2 border slot" (click)="slot.status == 'available' && slot.availablity = !slot.availablity;"
+            <p class="m-2 p-2 border slot" (click)="slot.status == 'notavailable' && slot.availablity = !slot.availablity;"
              [ngClass]="{
              'border-success bg-success' :slot.availablity,
               'border-secondary bg-secondary' : !slot.availablity
@@ -64,7 +64,7 @@
         <div class="col-12">
            <p><span class="border border-success bg-success text-white px-1 mx-1">Available</span>          
             <span class="border border-secondary bg-secondary text-white  px-1 mx-1">Not Available</span>
-            <span class="border border-primary bg-primary text-white  px-1 mx-1">Booked</span></p>
+            <span class="border border-info bg-info text-white  px-1 mx-1">Booked</span></p>
            <br>
         </div>
     </div>
