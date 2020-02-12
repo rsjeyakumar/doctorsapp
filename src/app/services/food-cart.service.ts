@@ -9,12 +9,10 @@ import { retry, catchError } from 'rxjs/operators';
 export class FoodCartService {
   apiURL = 'http://10.117.189.227:8085';
   showAlert;
-  loginAPI = `${this.apiURL}/DigiHealth/login`;
+  loginAPI = `${this.apiURL}/digidb/login`;
   searchAPI = `${this.apiURL}/digidb/patients`;
   appointmentAPI = '';
-  slotAPI = `http://10.117.189.38:8585/digiHealth/doctors`;
-
-
+  slotAPI = `${this.apiURL}/digidb/doctors`;
 
   constructor(private http: HttpClient) {
   }
@@ -32,6 +30,7 @@ export class FoodCartService {
   * Validate Login API
   * POST Method
   * Type Object
+  * return Type Observable<any>
   */
   checkLogin(data): Observable<any> {
     return this.http.post(this.loginAPI, data, this.httpOptions).pipe(
@@ -40,7 +39,7 @@ export class FoodCartService {
   }
 
    /*
-  * @param data
+  * @param specilization
   * Search Doctors
   * Get Method
   */
