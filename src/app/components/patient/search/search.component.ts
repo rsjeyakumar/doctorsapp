@@ -114,7 +114,7 @@ export class SearchComponent implements OnInit {
 
       this.slotList = res.slotDetails.filter(
         (res) => {
-          return res.availablity === true;
+          return res.status === 'available';
         }
       );
 
