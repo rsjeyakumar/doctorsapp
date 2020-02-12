@@ -11,7 +11,8 @@ export class FoodCartService {
   showAlert;
   loginAPI = `${this.apiURL}/digidb/login`;
   searchAPI = `${this.apiURL}/digidb/patients`;
-  appointmentAPI = '';
+  appointmentAPI = `${this.apiURL}/digidb/patients/appointments`;
+  getPatients = `${this.apiURL}/digidb/doctors`;
   slotAPI = `${this.apiURL}/digidb/doctors`;
 
   constructor(private http: HttpClient) {
