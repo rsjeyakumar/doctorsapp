@@ -46,6 +46,12 @@
     color:yellow;
     padding: 3px;
   }
+  .error_appointment{
+    font-size: 90%;
+    font-style: italic;
+    color:red;
+    padding: 3px;
+  }
   body
 {
 	background:#00bcd4;

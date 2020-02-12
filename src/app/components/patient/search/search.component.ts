@@ -11,8 +11,11 @@ import Swal from 'sweetalert2';
 })
 export class SearchComponent implements OnInit {
   searchForm: FormGroup;
-  loader: false;
+  appointmentForm: FormGroup;
+  loader = false;
+  appointment = false;
   doctorsList;
+  slotList;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -25,8 +28,14 @@ export class SearchComponent implements OnInit {
   */
  get search() { return this.searchForm.controls; }
 
+ /*
+  * @param
+  * Get search form controll access
+  */
+ get booking() { return this.appointmentForm.controls; }
+
   /*
-   * @param Login Validate
+   * @param
    * Search Doctors form with credentials
    * @input specilization
    */
@@ -43,6 +52,52 @@ export class SearchComponent implements OnInit {
       });
     }
   }
+
+   /*
+   * @param
+   * Book Appointment
+   * @input specilization
+   */
+  submitAppointment() {
+    if (this.appointmentForm.valid) {
+      const postObj = {
+        patientName: this.appointmentForm.value.name,
+        patientContact: this.appointmentForm.value.mobile,
+        doctorId: 12,
+        slotId: this.appointmentForm.value.slot
+      };
+      this.foodService.bookAppointment(postObj).subscribe(res => {
+        console.log(res);
+        this.loader = false;
+        },
+       error => {
+        this.loader = false;
+      });
+    }
+  }
+
+   /*
+   * @param
+   * Get Slot for Appointment
+   * @input doctorId
+   */
+
+   getAppointmentSlot() {
+    this.loader = true;
+    const doctorId = 12;
+    this.foodService.getSlots(doctorId).subscribe(res => {
+      console.log(res);
+      this.loader = false;
+      this.slotList = res;
+    },
+      error => {
+        this.loader = false;
+      });
+   }
+
+  bookAppointment() {
+    this.appointment = true;
+  }
  /*
    * @param create form
    * Create form group object for login form
@@ -52,9 +107,21 @@ export class SearchComponent implements OnInit {
       specialization: ['', Validators.required],
     });
   }
+  /*
+   * @param create form
+   * Create form group object for login form
+   */
+  createBookingForm() {
+    this.appointmentForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      mobile: ['', Validators.required],
+      slot: ['', Validators.required]
+    });
+  }
 
   ngOnInit() {
     this.createSearchForm();
+    this.createBookingForm();
   }
 
 }
