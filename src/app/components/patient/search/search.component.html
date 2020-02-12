@@ -45,7 +45,7 @@
     </div>
 </section>
 
-<section style="margin-top:10px;" *ngIf="doctorsList">
+<section style="margin-top:10px;" id="post-container" *ngIf="doctorsList">
     <div class="container">
         <div class="row">
             <!--team-1-->
@@ -56,7 +56,7 @@
                             class="img-fluid" />
                         <h3>{{doctor.doctorName}}</h3>
                         <h3><strong class="text-primary">{{doctor.specialization}}</strong></h3>
-                        <p-rating [ngModel]="{{doctor.rating}}" readonly="true" stars="5" [cancel]="false"></p-rating>
+                        <p-rating [ngModel]="doctor.rating" readonly="true" stars="5" [cancel]="false"></p-rating>
                     </div>
                     <div class="team-back text-center" style="margin-top:30px;">
                         <div class="footer text-center" style="padding-top:80px;">
