@@ -45,22 +45,22 @@
     </div>
 </section>
 
-<section style="margin-top:10px;">
+<section style="margin-top:10px;" *ngIf="doctorsList">
     <div class="container">
         <div class="row">
             <!--team-1-->
-            <div class="col-lg-4">
+            <div class="col-lg-4" *ngFor="let doctor of doctorsList">
                 <div class="our-team-main">
                     <div class="team-front">
                         <img src="https://pluspng.com/img-png/png-hd-doctor--359.png"
                             class="img-fluid" />
-                        <h3>Rabeek</h3>
-                        <h3><strong class="text-primary">Heart Speciliast</strong></h3>
+                        <h3>{{doctor.doctorName}}</h3>
+                        <h3><strong class="text-primary">{{doctor.specialization}}</strong></h3>
                         <p-rating [ngModel]="4" readonly="true" stars="5" [cancel]="false"></p-rating>
                     </div>
                     <div class="team-back text-center" style="margin-top:30px;">
                         <div class="footer text-center" style="padding-top:80px;">
-                            <button (click)="bookAppointment();" class="btn btn-danger">Book Appointment</button>
+                            <button (click)="bookAppointment(doctor.doctorId);" class="btn btn-danger">Book Appointment</button>
                         </div>
                     </div>
 
@@ -95,8 +95,8 @@
             <div class="form-group col-md-6">
               <label for="inputEmail4">Appointment Slots</label>
               <select id="inputState" class="form-control" formControlName="slot">
-                <option selected>Choose Slots</option>
-                <option>1</option>
+                <option value="">Choose Slots</option>
+                <option *ngFor="let item of slotList" [value]="item.slotName">{{item.slotName}}</option>
               </select>
               <div *ngIf="booking.slot.touched && booking.slot.invalid" class="error_appointment">
                 <div *ngIf="booking.slot.errors && booking.slot.errors.required">
@@ -105,7 +105,7 @@
             </div>
             </div>
             <div class="form-group col-md-6">
-                <button type="button" class="btn btn-primary" style="margin-top:28px;">Get Slots</button>
+                <button type="button" class="btn btn-primary" (click)="getAppointmentSlot();" style="margin-top:28px;">Get Slots</button>
             </div>
           </div>
           <button type="submit" [disabled]="appointmentForm.invalid" class="btn btn-danger btn-sm btn-block">Book Appointment</button>

@@ -7,9 +7,12 @@ import { retry, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class FoodCartService {
-  apiURL = 'http://10.117.189.136:8585';
+  apiURL = 'http://10.117.189.227:8085';
   showAlert;
   loginAPI = `${this.apiURL}/DigiHealth/login`;
+  searchAPI = `${this.apiURL}/digidb/patients`;
+  appointmentAPI = '';
+  slotAPI = `http://10.117.189.38:8585/digiHealth/doctors`;
 
 
 
@@ -35,6 +38,42 @@ export class FoodCartService {
       catchError(this.errorHandler.bind(this))
     );
   }
+
+   /*
+  * @param data
+  * Search Doctors
+  * Get Method
+  */
+ searchDoctor(specilization: string): Observable<any> {
+  return this.http.get(this.searchAPI + '/' + specilization).pipe(
+    catchError(this.errorHandler.bind(this))
+  );
+}
+
+/*
+  * @param data
+  * Patient Appointment API
+  * POST Method
+  * Type Object
+  */
+ bookAppointment(data): Observable<any> {
+  return this.http.post(this.appointmentAPI, data, this.httpOptions).pipe(
+    catchError(this.errorHandler.bind(this))
+  );
+}
+
+/*
+  * @param data
+  * Ger Slot for Patients
+  * Get Method
+  */
+ getSlots(doctorId: number): Observable<any> {
+  return this.http.get(this.slotAPI + '/' + doctorId + '/' + 'slots').pipe(
+    catchError(this.errorHandler.bind(this))
+  );
+}
+
+
 
   /*
      * @param error

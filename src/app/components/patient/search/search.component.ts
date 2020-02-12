@@ -14,6 +14,7 @@ export class SearchComponent implements OnInit {
   appointmentForm: FormGroup;
   loader = false;
   appointment = false;
+  doctorId: number;
   doctorsList;
   slotList;
   constructor(
@@ -43,8 +44,9 @@ export class SearchComponent implements OnInit {
     if (this.searchForm.valid) {
       const specilization = this.searchForm.value.specialization;
       // tslint:disable-next-line: deprecation
-      this.foodService.checkLogin(specilization).subscribe(res => {
+      this.foodService.searchDoctor(specilization).subscribe(res => {
         console.log(res);
+        this.doctorsList = res.doctorDetails;
         this.loader = false;
         },
        error => {
@@ -84,19 +86,20 @@ export class SearchComponent implements OnInit {
 
    getAppointmentSlot() {
     this.loader = true;
-    const doctorId = 12;
+    const doctorId = this.doctorId;
     this.foodService.getSlots(doctorId).subscribe(res => {
       console.log(res);
       this.loader = false;
-      this.slotList = res;
+      this.slotList = res.slotDetails;
     },
       error => {
         this.loader = false;
       });
    }
 
-  bookAppointment() {
+  bookAppointment(doctorId) {
     this.appointment = true;
+    this.doctorId = doctorId;
   }
  /*
    * @param create form
