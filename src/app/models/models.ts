@@ -33,42 +33,23 @@ export interface Response {
         statusCode: number;
         message: string;
 }
-
-
-export interface AccountsList {
-        accountNumber: number;
-        accountType: string;
-        currency: string;
-        balance: string;
-}
-
-
-
-export interface TransactionReq {
-        fromAccount: number;
-        toAccount: number;
-        transferAmount: number;
-}
-
-export interface TransactionRes {
+export interface Search {
         statusCode: number;
         message: string;
+        doctorDetails: DoctorDetails[];
+}
+export interface DoctorDetails {
+        doctorId: number;
+        doctorName: string;
+        specialization: string;
+        qualification: string;
+        hospitalName: string;
 }
 
-export interface TransactionRes {
-        statusCode: number;
-        message: string;
-}
-
-export interface TransactionHistory {
-        statusCode: number;
-        transactionDetails: TransactionSummary[];
-}
-
-export interface TransactionSummary {
-        fromAccount: number;
-        toAccount: number;
-        transferdAmount: number;
-        transactionDate: Date;
-        transactionStatus: string;
+export interface AppoinmentReq {
+        patientName: string;
+        patientContact: string;
+        doctorId: number;
+        slotName: number;
+        hospitalName: string;
 }

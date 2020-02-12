@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FoodCartService } from '../../../services/food-cart.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { LoginReq, LoginRes } from '../../../models/models';
 
 @Component({
   selector: 'app-login',
@@ -20,9 +21,8 @@ export class LoginComponent implements OnInit {
   }
 
   validateUser() {
-    console.log(this.loginForm.value);
     this.http.checkLogin(this.loginForm.value).subscribe(
-      (res) => {
+      (res: LoginRes) => {
         if (res.statusCode === 200) {
           sessionStorage.setItem('currentUser', JSON.stringify(res));
           this.router.navigate(['/doctor/dashboard']);

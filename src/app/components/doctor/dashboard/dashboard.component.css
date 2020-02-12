@@ -100,3 +100,16 @@
 .ui-button-text{
     display: none !important;
 }
+.card-body .col-4{
+    margin:auto;
+}
+.card-title{
+    margin: 0px;
+}
+.list-group-item-text{
+    margin: 0px;
+}
+.patientinfo{
+    height: 48px;
+}
+

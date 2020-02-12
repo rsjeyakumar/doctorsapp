@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
     { slotName: '2:00 PM', availablity: false },
     { slotName: '3:00PM', availablity: false }
   ];
-  selectedSlot = [];
+  // selectedSlot = [];
   constructor() { }
 
   ngOnInit() {
@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
     //     return res.availablity === true;
     //   }
     // );
-    console.log(this.selectedSlot);
+    // console.log(this.selectedSlot);
     this.display = false;
   }
 
