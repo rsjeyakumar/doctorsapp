@@ -1,49 +1,53 @@
-
-<div class="container shadow accountsummary">
+<div class="container">
     <div class="row">
-        <div class="col-12">
-            <div class="row">
-                <div class="col-12 my-4">
-                    <h2>Todays Patients List</h2>
-                </div>
-               
-            </div>
+        <div class="col-12 text-right py-2">
+            <button class="btn btn-primary" (click)="manageSlots()">Manage Slots</button>
         </div>
-        <div class="col-12">
-                
-            <div class="card" >
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <p><small><b>Account Number:</b></small>  {{transaction?.toAccount}}</p>
-
-                        </div>
-                        <div class="col-md-4">
-                            <p><small><b>Status:</b></small> {{transaction?.transactionStatus}} </p>
-
-                        </div>
-                        <div class="col-md-4 ml-auto float-lg-right text-lg-right">
-                            <p><small><b>Transaction Date:</b></small> 
-                                 {{transaction?.transactionDate | date:'dd-MM-yyyy'}}</p> 
-
-                        </div>
-                    </div>
-
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        
-                        <div class="col-md-3 ml-auto float-lg-right text-right">
-                            <p><small><b>Transfed Amount:</b></small></p>
-                            <h5>INR {{transaction?.transferredAmount}}</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>     
-          
-        </div>
-    </div>
-    <div class="row">
-        <div class="col"></div>
     </div>
 </div>
+<div class="container shadow accountsummary">   
+    
+    <div id="products" class="row view-group pt-4">
+       
+        <div class="item col-xs-4 col-lg-4 list-group-item">
+            <div class="thumbnail card p-1">
+                <div class="img-event">
+                    <img class="group list-group-image img-fluid" src="https://ui-avatars.com/api/?name=John+Doe&color=28a745" alt="" />
+                </div>
+                <div class="caption card-body p-2">
+                    <div class="row">
+                        <div class="col-4">
+                            <h4 class="group card-title inner list-group-item-heading">
+                                Raja Sundharam</h4>
+                        </div>
+                        <div class="col-4">
+                            <p class="group inner list-group-item-text">
+                                9876543210 </p>
+                        </div>
+                        <div class="col-4">
+                            <p class="lead">
+                                11:00AM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-event float-right bg-info px">
+                   <p>Px</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<p-dialog header="Manage Your Slots" [(visible)]="display" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false">
+    <div class="row">
+        <div class="col-4 text-center slotlist" *ngFor="let slot of slots">
+            <p class="m-2 p-2 border slot" (click)="slot.availablity = !slot.availablity;" [ngClass]="{'border-success bg-success' :slot.availablity }">{{slot.slotName}}</p>
+        </div>
+    </div>
+
+        <p-footer>
+            <button class="btn btn-primary" (click)="makeAvailable()">Make me Avaliable</button>         
+        </p-footer>
+</p-dialog>
